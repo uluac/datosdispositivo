@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pr&aacute;ctica 2 - PhoneGap</title>
+        <link rel="stylesheet" href="themes/css/apple2.css" title="jQTouch">
+		
+		<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="src/lib/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="src/jqtouch.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="appjs/actions.js" type="text/javascript" charset="utf-8"></script>
+        <!-- Uncomment the following two lines (and comment out the previous two) to use jQuery instead of Zepto. -->
+        <!-- <script src="../../src/lib/jquery-1.7.min.js" type="application/x-javascript" charset="utf-8"></script> -->
+        <!-- <script src="../../src/jqtouch-jquery.min.js" type="application/x-javascript" charset="utf-8"></script> -->
+
+        <!-- <script src="../../extensions/jqt.themeswitcher.min.js" type="application/x-javascript" charset="utf-8"></script> -->
+
+        <script type="text/javascript" charset="utf-8">
+            var jQT = new $.jQTouch({
+                icon: 'jqtouch.png',
+                icon4: 'jqtouch4.png',
+                addGlossToIcon: false,
+                startupScreen: 'jqt_startup.png',
+                statusBar: 'black-translucent',
+                themeSelectionSelector: '#jqt #themes ul',
+                preloadImages: []
+            });
+
+            // Some sample Javascript functions:
+            $(function(){
+                // Orientation callback event
+                $('#jqt').bind('turn', function(e, data){
+                    $('#orient').html('Orientation: ' + data.orientation);
+                });
+                
+            });
+        </script>
+        <style type="text/css" media="screen">
+            #jqt.fullscreen #home .info {
+                display: none;
+            }
+            div#jqt #credits {
+                padding: 100px 10px 40px;
+                text-shadow: rgba(0, 0, 0, 0.3) 0px -1px 0;
+                color: #999;
+                font-size: 13px;
+                text-align: center;
+                background: #161618;
+            }
+            div#jqt #credits p {
+                margin-bottom: 8px;
+            }
+            div#jqt #credits a {
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="jqt">
+            <div id="credits" class="selectable">
+                    <p><img src="jqtouch.png" /></p>
+                    <p><strong>Aplicaci&oacute;n 2</strong><br>Versi&oacute;n 1.0<br>
+                        Por Carlos Celma Tavera</p>
+                    <p><b><em>Demostraci&oacute;n de:</em></b></p>
+					<p>Informaci&oacute;n del Dispositivo</p>
+					<p>Eventos</p>
+					<p>Manipulaci&oacute;n de Contactos</p>
+					<p>Manipulaci&oacute;n de Archivos</p>
+                    <p><br><br><a href="#" class="grayButton goback">Cerrar</a></p>
+            </div>
+            <div id="home" class="current">
+                <div class="toolbar">
+                    <h1>Aplicaci&oacute;n 2</h1>
+                    <a class="button slideup" id="infoButton" href="#credits">Cr&eacute;ditos</a>
+                </div>
+                <div class="scroll">
+                    <ul class="rounded">
+                        <li class="arrow"><a href="#devic">Dispositivo <small class="counter">5</small></a> </li>
+                        <li class="arrow"><a href="#eventos">Eventos <small class="counter">4</small></a></li>
+                        <li class="arrow"><a href="#deviceContacts">Contactos <small class="counter">2</small></a></li>
+                        <li class="arrow"><a href="#archivs">Archivos <small class="counter">2</small></a></li>
+                    </ul>
+                    <div class="info">
+                        <p>P&aacute;ctica de PhoneGap Clase 4 <br>Utilizando jqtouch con zepto.</p>
+                    </div>
+                </div>
+            </div>
+			<div id="devic">
+				<div class="toolbar">
+                    <h1>Dispositivo</h1>
+                    <a class="back" href="#">Atr&aacute;s</a>
+                </div>
+				<div class="scroll">
+					<center>
+					<table>
+						<tr><td class="desc">Nombre del dispositivo:</td><td class="disp"></td></tr>
+						<tr><td class="desc">Versi&oacute;n de PhoneGap:</td><td class="disp"></td></tr>
+						<tr><td class="desc">Plataforma:</td><td class="disp"></td></tr>
+						<tr><td class="desc">Versi&oacute;n de Plataforma:</td><td class="disp"></td></tr>
+						<tr><td class="desc">ID de dispositivo:</td><td class="disp"></td></tr>
+					</table>
+					</center>
+				</div>
+				<div class="info">
+                    Caracter&iacute;sticas del dispositivo.
+                </div>
+			</div>
+			<div id="eventos">
+				<div class="toolbar">
+                    <h1>Eventos</h1>
+                    <a class="back" href="#">Atr&aacute;s</a>
+                </div>
+				<div class="scroll">
+					<h2>Historia</h2>
+					<ul id="eventsHistory" class="plastic scroll"></ul>
+				</div>
+				<div class="info">
+                    Historial de captura de Eventos.
+                </div>
+			</div>
+			<div id="deviceContacts">
+				<div class="toolbar">
+                    <h1>Contactos</h1>
+                    <a class="back" href="#">Atr&aacute;s</a>
+                </div>
+				<div class="scroll">
+					<a href="#contacts-new" class="whiteButton pop">Nuevo Contacto</a>
+					<ul id="contactsList" class="plastic scroll" style="margin-top: 20px;">
+						<li><a href="tel://999-999-9999">Nombre del contacto</a></li>
+					</ul>
+				</div>
+				<div class="info">
+                    Manipulando a los contactos del dispositivo.
+                </div>
+			</div>
+			<div id="contacts-new">
+				<div class="toolbar">
+                    <h1>Contactos</h1>
+                    <a class="button goback" href="#">Cerrar</a>
+                </div>
+				<div class="scroll">
+					<ul class="edit rounded" id="nueContact">
+						<li><input type="text" name="name" placeholder="Nombre para Mostrar" id="contDispley" /></li>
+						<li><input type="text" name="name" placeholder="Nombre" id="contName" /></li>
+						<li><input type="text" name="name" placeholder="Apellido" id="contFamily" /></li>
+						<li><input type="tel" name="phone" placeholder="Tel&eacute;fono" id="contPhone" maxlength="10" /></li>
+						<li><a class="greenButton sendForm" href="#">Crear</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="archivs">
+				<div class="toolbar">
+                    <h1>Archivos</h1>
+                    <a class="back" href="#">Atr&aacute;s</a>
+                </div>
+				<div class="scroll">
+					<ul class="edit rounded" id="playFiles">
+						<li>read-write.txt</li>
+						<li><textarea id="fileContent"></textarea></li>
+						<li><a class="grayButton readFile" href="#">Leer</a> <a class="redButton sendForm" href="#">Escribir</a></li>
+					</ul>
+				</div>
+				<div class="info">
+                    Manipulando Arichivos dentro del dispositivo.
+                </div>
+			</div>
+        </div>
+    </body>
+</html>
