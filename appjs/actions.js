@@ -74,7 +74,6 @@ function newContact(){
 		elContact.save(function(){
 			//correcto
 			pgAlert("Grabado Correctamente");
-			$('.goback').click();
 		}, function(contactError){
 			//error
 			pgAlert("No se pudo Guardar: "+contactError.code);
@@ -86,25 +85,26 @@ function newContact(){
 	}
 }
 //Lectura de archivos
-/*function readFiles(){
+function readFiles(){
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 		fileSystem.root.getFile('read-write.txt', null, function(archivo){
 			archivo.file(function(archivo){
 				var lector = new FileReader();
 				lector.onloadend = function(e){
-					alert(e.target.result);
+					pgAlert('Lectura del Archivo');
 				}
-				lector.readAsDataURL(file);
+				$('#fileContent').text(lector.readAsText(archivo));
+				alert(lector.readAsText(archivo));
 			}, function(){
 				pgAlert("No existe el archivo, agrega contenido y luego presiona en Escribir");
 			});
 		},
 		function(err){
-			pgAlert("No se pudo acceder al sistema de archivos");
+			pgAlert("No se pudo acceder al sistema de archivos 1");
 		});
 	},
 	function(err){
-		pgAlert("No se pudo acceder al sistema de archivos");
+		pgAlert("No se pudo acceder al sistema de archivos 2");
 	});
 }
 //Escritura de archivos
@@ -126,7 +126,7 @@ function writeFiles(){
 	}, function(err){
 		pgAlert("No se pudo acceder al sistema de archivos");
 	});
-}*/
+}
 /*$(document).ready(function(){
 	document.addEventListener("deviceready", function(){
 		deviceData();//Datos del dispositivo
@@ -196,7 +196,8 @@ $(document).ready(function(){
 			
 		});
 		//archivos
-		readFiles();
+		//readFiles();
+		$('.readFile').tap(readFiles);
 	}, false);
 });
 function eventHistory(action){
