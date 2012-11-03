@@ -36,7 +36,7 @@ function readContacts(){
 //Crear contactos
 function newContact(){
 	if($('#contDispley').val() != '' && $('#contName').val() != '' && $('#contFamily').val() != '' && $('#contPhone').val() != ''){
-		//alert($('#contDispley').val()+'-'+$('#contName').val()+'-'+$('#contFamily').val()+'-'+$('#contPhone').val());
+		/*//alert($('#contDispley').val()+'-'+$('#contName').val()+'-'+$('#contFamily').val()+'-'+$('#contPhone').val());
 		var contacto = navigator.contacts.create();
 		//Nombre para mostrar
 		contacto.displayName = $('#contDispley').val();
@@ -53,7 +53,7 @@ function newContact(){
 			pgAlert("Grabado Correctamente");
 		}, function(){
 			pgAlert("No se pudo Guardar");
-		});
+		});*/
 		//Reintento
 		// create a new contact object
 		var elContact = navigator.contacts.create();
@@ -74,6 +74,7 @@ function newContact(){
 		elContact.save(function(){
 			//correcto
 			pgAlert("Grabado Correctamente");
+			$('.goback').click();
 		}, function(contactError){
 			//error
 			pgAlert("No se pudo Guardar: "+contactError.code);
@@ -85,7 +86,7 @@ function newContact(){
 	}
 }
 //Lectura de archivos
-function readFiles(){
+/*function readFiles(){
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 		fileSystem.root.getFile('read-write.txt', null, function(archivo){
 			archivo.file(function(archivo){
@@ -125,7 +126,7 @@ function writeFiles(){
 	}, function(err){
 		pgAlert("No se pudo acceder al sistema de archivos");
 	});
-}
+}*/
 /*$(document).ready(function(){
 	document.addEventListener("deviceready", function(){
 		deviceData();//Datos del dispositivo
@@ -163,7 +164,7 @@ $(document).ready(function(){
 	document.addEventListener("deviceready",function(){
 		//Informaci�n del dispositivo
 		$('#devic table td').eq(1).text(device.name);
-		$('#devic table td').eq(3).text(device.phonegap);
+		$('#devic table td').eq(3).text(device.cordova);
 		$('#devic table td').eq(5).text(device.platform);
 		$('#devic table td').eq(7).text(device.version);
 		$('#devic table td').eq(9).text(device.uuid);
